@@ -29,32 +29,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Exported types ------------------------------------------------------------*/
-/* USER CODE BEGIN ET */
-
-/* USER CODE END ET */
-
-/* Exported constants --------------------------------------------------------*/
-/* USER CODE BEGIN EC */
-
-/* USER CODE END EC */
-
-/* Exported macro ------------------------------------------------------------*/
-/* USER CODE BEGIN EM */
-
-/* USER CODE END EM */
-
-/* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-
-/* USER CODE BEGIN EFP */
-
-/* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
 #define V2_SENSE_Pin GPIO_PIN_0
@@ -75,10 +50,6 @@ void Error_Handler(void);
 #define SPI1_IRQ_GPIO_Port GPIOD
 #define SPI1_CS_Pin GPIO_PIN_10
 #define SPI1_CS_GPIO_Port GPIOG
-
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
 
 #ifdef __cplusplus
 }

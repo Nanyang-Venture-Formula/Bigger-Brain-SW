@@ -49,8 +49,18 @@ void __fdcan_init(FDCAN_HandleTypeDef *hfdcan)
     hfdcan->Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
     hfdcan->Init.TxElmtSize = FDCAN_DATA_BYTES_12;
 
+    uint8_t ram_offset = 0;
     // ram offset +11 for each fdcan
-    hfdcan->Init.MessageRAMOffset = 0;
+    if (hfdcan->Instance == FDCAN2)
+    {
+        ram_offset = 11;
+    }
+    else if (hfdcan->Instance == FDCAN3)
+    {
+        ram_offset = 23;
+    }
+
+    hfdcan->Init.MessageRAMOffset = ram_offset;
 
     if (HAL_FDCAN_Init(hfdcan) != HAL_OK)
     {
@@ -130,13 +140,26 @@ void _debug_can_print_msg(canbus_msg *cmsg)
 
 void cb_can_rx(FDCAN_HandleTypeDef *hfdcan, canbus_msg *rxmsg, FDCAN_RxHeaderTypeDef *rxHeader)
 {
-
+    /* Retreive Rx messages from RX FIFO0 */
     HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, rxHeader, rxmsg->data);
     rxmsg->dlc = rxHeader->DataLength;
     rxmsg->id = rxHeader->Identifier;
     rxmsg->ts_rx = rxHeader->RxTimestamp;
 
-    //    usb_vcptx("rx: ");
+    rxmsg->which_can = 0;
+    if (hfdcan->Instance == FDCAN1)
+    {
+    	rxmsg->which_can = 1;
+    }
+    else if (hfdcan->Instance == FDCAN2)
+    {
+    	rxmsg->which_can = 2;
+    }
+    else if (hfdcan->Instance == FDCAN3)
+	{
+		rxmsg->which_can = 3;
+	}
+
     _debug_can_print_msg(rxmsg);
     return;
 }

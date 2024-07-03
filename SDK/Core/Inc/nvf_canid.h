@@ -30,6 +30,8 @@
 #define CAN_R2DN_VCU 			0x11
 #define CAN_R2DN_DASH 			0x12
 
-#define MY_CAN_ID				CAN_R2DN_VCU
+#define MY_CAN_ID1				CAN_R2DN_VCU
+#define MY_CAN_ID2				CAN_R2DN_VCU
+#define MY_CAN_ID3				CAN_R2DN_VCU
 
 #endif /* INC_NVF_CANID_H_ */

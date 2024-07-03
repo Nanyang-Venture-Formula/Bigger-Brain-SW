@@ -13,6 +13,7 @@ typedef struct __canbus_msg {
         uint8_t data[8];
         uint32_t data32[2];
     };
+    uint8_t which_can;
 } canbus_msg;
 
 #define CANMSG_ID_RTR (1<<30)
